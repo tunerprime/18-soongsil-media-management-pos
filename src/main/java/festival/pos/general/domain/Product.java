@@ -1,39 +1,49 @@
 package festival.pos.general.domain;
 
-import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="product")
-public class Product {
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
+@Table(name="mp_product")
+public class Product {
+	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long productId;
 	
-	// 상품 명
 	@Column(nullable=false)
 	private String productName;
 	
-	// 원가
 	@Column(nullable=false)
 	private Integer originAmount;
 	
-	// 판매가
 	@Column(nullable=false)
 	private Integer salesAmount;
+	
+	@Column(nullable=false)
+	private boolean soldoutYn;
+	
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@JoinColumn(name="product_group_id")
+	@JsonIgnore
+	private ProductGroup productGroup;
 
-	public Long getId() {
-		return id;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	public String getProductName() {
@@ -58,5 +68,21 @@ public class Product {
 
 	public void setSalesAmount(Integer salesAmount) {
 		this.salesAmount = salesAmount;
+	}
+
+	public boolean isSoldoutYn() {
+		return soldoutYn;
+	}
+
+	public void setSoldoutYn(boolean soldoutYn) {
+		this.soldoutYn = soldoutYn;
+	}
+
+	public ProductGroup getProductGroup() {
+		return productGroup;
+	}
+
+	public void setProductGroup(ProductGroup productGroup) {
+		this.productGroup = productGroup;
 	}
 }

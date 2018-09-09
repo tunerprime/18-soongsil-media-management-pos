@@ -4,43 +4,61 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="order")
+@Table(name="mp_order_product")
 public class OrderProduct {
-
-	// 주문 수
+	
+	@Id
+	@GeneratedValue
+	private Long orderProductId;
+	
 	@Column(nullable=false)
-	private Integer productOrderCount;
+	private Integer productCount;
 	
-	// 상품
-	@OneToOne(cascade=CascadeType.ALL, orphanRemoval=false)
-	@JoinColumn(name="id")
-	private Product product;
+	@Column(nullable=false)
+	private OrderProductStatus orderProductStatus;
 	
-	// 주문
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@JoinColumn(name="id")
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="order_id")
+	@JsonIgnore
 	private Order order;
+	
+	@OneToOne(cascade=CascadeType.PERSIST, orphanRemoval=false)
+	@JoinColumn(name="product_id")
+	private Product product;
 
-	public Integer getProductOrderCount() {
-		return productOrderCount;
+	public Long getOrderProductId() {
+		return orderProductId;
 	}
 
-	public void setProductOrderCount(Integer productOrderCount) {
-		this.productOrderCount = productOrderCount;
+	public void setOrderProductId(Long orderProductId) {
+		this.orderProductId = orderProductId;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Integer getProductCount() {
+		return productCount;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductCount(Integer productCount) {
+		this.productCount = productCount;
+	}
+
+	public OrderProductStatus getOrderProductStatus() {
+		return orderProductStatus;
+	}
+
+	public void setOrderProductStatus(OrderProductStatus orderProductStatus) {
+		this.orderProductStatus = orderProductStatus;
 	}
 
 	public Order getOrder() {
@@ -49,5 +67,13 @@ public class OrderProduct {
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 }
