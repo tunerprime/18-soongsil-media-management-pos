@@ -1,4 +1,4 @@
-package mikyeong.pos.general.domain;
+package festival.pos.general.domain;
 
 import java.util.Date;
 import java.util.List;

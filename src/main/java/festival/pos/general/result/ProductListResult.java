@@ -1,6 +1,6 @@
-package mikyeong.pos.general.result;
+package festival.pos.general.result;
 
-import mikyeong.pos.general.domain.Product;
+import festival.pos.general.domain.Product;
 
 public class ProductListResult {
 

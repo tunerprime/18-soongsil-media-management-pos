@@ -1,6 +1,7 @@
-package mikyeong.pos.general.service;
+package festival.pos.general.service;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -8,9 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mikyeong.pos.general.domain.Product;
-import mikyeong.pos.general.repository.ProductRepository;
-import mikyeong.pos.general.result.ProductListResult;
+import festival.pos.general.domain.Product;
+import festival.pos.general.repository.ProductRepository;
+import festival.pos.general.result.ProductListResult;
 
 @Service
 public class ProductService {

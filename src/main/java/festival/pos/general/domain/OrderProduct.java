@@ -1,4 +1,4 @@
-package mikyeong.pos.general.domain;
+package festival.pos.general.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

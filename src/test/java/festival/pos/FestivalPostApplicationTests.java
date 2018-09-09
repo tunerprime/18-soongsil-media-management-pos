@@ -1,4 +1,4 @@
-package mikyeong.pos.mikyeong;
+package festival.pos;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MikyeongApplicationTests {
+public class FestivalPostApplicationTests {
 
 	@Test
 	public void contextLoads() {
