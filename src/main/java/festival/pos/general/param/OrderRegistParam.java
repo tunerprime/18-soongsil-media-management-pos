@@ -6,6 +6,7 @@ public class OrderRegistParam {
 	
 	private Long orderInfoId;
 	private String orderOwnerName;
+	private Integer receiveAmount;
 	
 	private List<OrderProductRegistParam> products;
 
@@ -23,6 +24,14 @@ public class OrderRegistParam {
 
 	public void setOrderOwnerName(String orderOwnerName) {
 		this.orderOwnerName = orderOwnerName;
+	}
+	
+	public Integer getReceiveAmount() {
+		return receiveAmount;
+	}
+
+	public void setReceiveAmount(Integer receiveAmount) {
+		this.receiveAmount = receiveAmount;
 	}
 
 	public List<OrderProductRegistParam> getProducts() {

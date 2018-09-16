@@ -1,5 +1,6 @@
 package festival.pos.general.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -29,6 +30,9 @@ public class OrderInfo {
 	
 	@Column(nullable=false)
 	private boolean useYn;
+	
+	@Column
+	private Date infoBeginDate;
 	
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY, mappedBy="orderInfo")
 	@Where(clause="order_success_yn = false")
@@ -64,6 +68,14 @@ public class OrderInfo {
 
 	public void setUseYn(boolean useYn) {
 		this.useYn = useYn;
+	}
+	
+	public Date getInfoBeginDate() {
+		return infoBeginDate;
+	}
+
+	public void setInfoBeginDate(Date infoBeginDate) {
+		this.infoBeginDate = infoBeginDate;
 	}
 
 	public List<Order> getOrders() {

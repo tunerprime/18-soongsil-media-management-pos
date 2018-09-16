@@ -47,6 +47,7 @@ public class OrderService {
 		
 		// 상태 변경
 		orderInfo.setUseYn(false);
+		orderInfo.setInfoBeginDate(null);
 		
 		orderInfo.getOrders().stream().forEach(x-> {
 			x.setOrderSuccessYn(true);
@@ -63,12 +64,18 @@ public class OrderService {
 		
 		orderInfo.setUseYn(true);
 		
+		// 시간 설정
+		if(orderInfo.getInfoBeginDate() == null) {
+			orderInfo.setInfoBeginDate(new Date());
+		}
+		
 		Order order = new Order();
 		
 		order.setOrderType(orderInfo.getOrderInfoType());
 		order.setOrderOwnerName(param.getOrderOwnerName());
 		order.setOrderDate(new Date());
 		order.setOrderInfo(orderInfo);
+		order.setReceiveAmount(param.getReceiveAmount());
 		
 		List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
 		

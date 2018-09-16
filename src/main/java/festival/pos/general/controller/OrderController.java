@@ -82,7 +82,7 @@ public class OrderController {
 	}
 	
 	@DeleteMapping("{orderId}/products/{productId}")
-	public ResponseEntity<Order> removeOrdersProducts(@PathVariable("orderId") Long orderId, 
+	public ResponseEntity<?> removeOrdersProducts(@PathVariable("orderId") Long orderId, 
 			@PathVariable("productId") Long productId) {
 		orderService.removeOrdersProducts(orderId, productId);
 		

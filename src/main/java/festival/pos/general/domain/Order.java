@@ -41,6 +41,9 @@ public class Order {
 	@Column(nullable=false)
 	private Date orderDate;
 	
+	@Column
+	private Integer receiveAmount;
+	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="order_info_id")
 	@JsonIgnore
@@ -104,6 +107,14 @@ public class Order {
 
 	public void setOrderInfo(OrderInfo orderInfo) {
 		this.orderInfo = orderInfo;
+	}
+	
+	public Integer getReceiveAmount() {
+		return receiveAmount;
+	}
+
+	public void setReceiveAmount(Integer receiveAmount) {
+		this.receiveAmount = receiveAmount;
 	}
 
 	public List<OrderProduct> getOrderProducts() {
