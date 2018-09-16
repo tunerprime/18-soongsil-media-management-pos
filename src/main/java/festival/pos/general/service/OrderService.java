@@ -87,7 +87,12 @@ public class OrderService {
 			orderProduct.setOrder(order);
 			orderProduct.setProduct(product);
 			orderProduct.setProductCount(bean.getProductCount());
-			orderProduct.setOrderProductStatus(OrderProductStatus.ORDER_COMPLETE);
+			
+			if(product.isProductAutoCookingCompleteYn()) {
+				orderProduct.setOrderProductStatus(OrderProductStatus.COOK_END);
+			} else {
+				orderProduct.setOrderProductStatus(OrderProductStatus.ORDER_COMPLETE);
+			}
 			
 			orderProducts.add(orderProduct);
 		}

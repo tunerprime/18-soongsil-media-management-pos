@@ -78,9 +78,10 @@ INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, pr
 INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '13', '0', '샤인온더비치','3000', TRUE, false, '2');
 
 INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '14', '0', '떡꼬치+후랑크소시지','3500', FALSE, false, '3');
-INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '15', '0', '김치전/파전(택1)+육개장','7500', FALSE, false, '3');
+INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '15', '0', '김치전+육개장','7500', FALSE, false, '3');
+INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '16', '0', '파전+육개장','7500', FALSE, false, '3');
 
-INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '16', '0', '칵테일 3잔','8000', TRUE, false, '4');
-INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '17', '0', '김치전+탄산음료 1잔','7500', FALSE, false, '4');
-INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '18', '0', '파전+탄산음료 1잔','7500', FALSE, false, '4');
-INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '19', '0', '[쿠폰]나쵸','0', TRUE, false, '4');
+INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '17', '0', '칵테일 3잔','8000', TRUE, false, '4');
+INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '18', '0', '김치전+탄산음료 1잔','7500', FALSE, false, '4');
+INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '19', '0', '파전+탄산음료 1잔','7500', FALSE, false, '4');
+INSERT INTO mp_product(product_id, origin_amount, product_name, sales_amount, product_auto_cooking_complete_yn, soldout_yn, product_group_id) values ( '20', '0', '[쿠폰]나쵸','0', TRUE, false, '4');
