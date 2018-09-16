@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,6 +31,9 @@ public class Product {
 	
 	@Column(nullable=false)
 	private boolean soldoutYn;
+	
+	@Column(nullable=false)
+	private boolean productAutoCookingCompleteYn;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="product_group_id")
@@ -84,5 +86,13 @@ public class Product {
 
 	public void setProductGroup(ProductGroup productGroup) {
 		this.productGroup = productGroup;
+	}
+
+	public boolean isProductAutoCookingCompleteYn() {
+		return productAutoCookingCompleteYn;
+	}
+
+	public void setProductAutoCookingCompleteYn(boolean productAutoCookingCompleteYn) {
+		this.productAutoCookingCompleteYn = productAutoCookingCompleteYn;
 	}
 }

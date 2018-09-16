@@ -1,18 +1,6 @@
 package festival.pos.general.service;
 
 
-import festival.pos.general.domain.Order;
-import festival.pos.general.domain.OrderInfo;
-import festival.pos.general.domain.OrderProduct;
-import festival.pos.general.domain.OrderProductStatus;
-import festival.pos.general.domain.OrderType;
-import festival.pos.general.domain.Product;
-import festival.pos.general.param.OrderProductRegistParam;
-import festival.pos.general.param.OrderRegistParam;
-import festival.pos.general.repository.OrderInfoRepository;
-import festival.pos.general.repository.OrderRepository;
-import festival.pos.general.repository.ProductRepository;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +9,17 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import festival.pos.general.domain.Order;
+import festival.pos.general.domain.OrderInfo;
+import festival.pos.general.domain.OrderProduct;
+import festival.pos.general.domain.OrderProductStatus;
+import festival.pos.general.domain.Product;
+import festival.pos.general.param.OrderProductRegistParam;
+import festival.pos.general.param.OrderRegistParam;
+import festival.pos.general.repository.OrderInfoRepository;
+import festival.pos.general.repository.OrderRepository;
+import festival.pos.general.repository.ProductRepository;
 
 @Service
 public class OrderService {
@@ -40,6 +39,20 @@ public class OrderService {
 	
 	public Order findOne(Long orderId) {
 		return orderRepository.findOne(orderId);
+	}
+	
+	@Transactional
+	public OrderInfo exitOrderInfo(Long orderInfoId) {
+		OrderInfo orderInfo = orderInfoRepository.findOne(orderInfoId);
+		
+		// 상태 변경
+		orderInfo.setUseYn(false);
+		
+		orderInfo.getOrders().stream().forEach(x-> {
+			x.setOrderSuccessYn(true);
+		});
+		
+		return orderInfo;
 	}
 	
 	@Transactional
@@ -75,5 +88,47 @@ public class OrderService {
 		order.setOrderProducts(orderProducts);
 		
 		return orderRepository.save(order);
+	}
+	
+	@Transactional
+	public Order changeStatus(Long orderId, Long productId) {
+		Order order = orderRepository.findOne(orderId);
+		
+		OrderProduct orderProduct = order.getOrderProducts()
+				.stream().filter(x-> x.getProduct().getProductId().equals(productId))
+				.findFirst().orElse(null);
+		
+		if(orderProduct.getOrderProductStatus().equals(OrderProductStatus.ORDER_COMPLETE)) {
+			orderProduct.setOrderProductStatus(OrderProductStatus.COOK_ING);
+		} else if(orderProduct.getOrderProductStatus().equals(OrderProductStatus.COOK_ING)) {
+			orderProduct.setOrderProductStatus(OrderProductStatus.COOK_END);
+		}
+		
+		return order;
+	}
+	
+	@Transactional
+	public Order completePayment(Long orderId) {
+		Order order = orderRepository.findOne(orderId);
+		
+		order.setOrderPaymentYn(true);
+		
+		return order;
+	}
+	
+	@Transactional
+	public void removeOrder(Long orderId) {
+		orderRepository.delete(orderId);
+	}
+	
+	@Transactional
+	public void removeOrdersProducts(Long orderId, Long productId) {
+		Order order = orderRepository.findOne(orderId);
+		
+		OrderProduct orderProduct = order.getOrderProducts()
+				.stream().filter(x-> x.getProduct().getProductId().equals(productId))
+				.findFirst().orElse(null);
+		
+		orderProduct.setDeleteYn(true);
 	}
 }

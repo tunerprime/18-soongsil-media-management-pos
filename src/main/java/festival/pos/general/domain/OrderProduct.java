@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +27,10 @@ public class OrderProduct {
 	@Column(nullable=false)
 	private OrderProductStatus orderProductStatus;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@Column(nullable=false)
+	private boolean deleteYn;
+	
+	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
 	@JoinColumn(name="order_id")
 	@JsonIgnore
 	private Order order;
@@ -59,6 +61,14 @@ public class OrderProduct {
 
 	public void setOrderProductStatus(OrderProductStatus orderProductStatus) {
 		this.orderProductStatus = orderProductStatus;
+	}
+	
+	public boolean isDeleteYn() {
+		return deleteYn;
+	}
+
+	public void setDeleteYn(boolean deleteYn) {
+		this.deleteYn = deleteYn;
 	}
 
 	public Order getOrder() {
