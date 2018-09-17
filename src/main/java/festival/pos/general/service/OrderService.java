@@ -14,6 +14,7 @@ import festival.pos.general.domain.Order;
 import festival.pos.general.domain.OrderInfo;
 import festival.pos.general.domain.OrderProduct;
 import festival.pos.general.domain.OrderProductStatus;
+import festival.pos.general.domain.OrderType;
 import festival.pos.general.domain.Product;
 import festival.pos.general.param.OrderProductRegistParam;
 import festival.pos.general.param.OrderRegistParam;
@@ -130,6 +131,12 @@ public class OrderService {
 	
 	@Transactional
 	public void removeOrder(Long orderId) {
+		Order order = orderRepository.findOne(orderId);
+		
+		if(order.getOrderInfo().getOrderInfoType().equals(OrderType.TAKE_OUT)) {
+			this.exitOrderInfo(order.getOrderInfo().getOrderInfoId());
+		}
+		
 		orderRepository.delete(orderId);
 	}
 	
